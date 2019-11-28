@@ -1,9 +1,7 @@
-# 卖座网SSR项目
+# 聊天软件h5
 
 ### 开始
 ```
 yarn
-npm run dev   启动客户端
-npm run server  启动服务端
+npm run start
 ```
-//1231232
