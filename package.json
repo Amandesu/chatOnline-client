@@ -1,0 +1,76 @@
+{
+  "name": "nodecli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "mobx": "^5.15.0",
+    "mobx-react": "^6.1.4",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-helmet": "^5.2.0",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-proposal-decorators": "^7.3.0",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-arrow-functions": "^7.2.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-stage-0": "^7.0.0",
+    "@babel/runtime": "^7.3.1",
+    "autoprefixer": "^9.4.6",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-transform-inline-environment-variables": "0.4.3",
+    "babel-plugin-transform-omodule-namespace": "0.5.0",
+    "babel-preset-react-app": "^7.0.0",
+    "better-picker": "^1.1.3",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^3.0.1",
+    "fs-extra": "^7.0.1",
+    "html-minifier": "^4.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "postcss-loader": "^3.0.0",
+    "postcss-px2rem": "^0.3.0",
+    "react-dev-utils": "^7.0.1",
+    "react-hot-loader": "^4.6.3",
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.29.0",
+    "webpack-assets-info": "^0.0.2",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14",
+    "webpack-parallel-uglify-plugin": "^1.1.0"
+  },
+  "proxy": "https://m.maizuo.com",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node scripts/start.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
