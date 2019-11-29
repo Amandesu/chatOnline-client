@@ -12,6 +12,7 @@ module.exports = {
    // appBuild: resolveApp("build"),
     appPath: resolveApp('.'),
     appSrc:resolveApp("src"),
+    appBuild:resolveApp("dist"),
     appIndexJs: resolveApp("src/index.js"),
     appPublic:resolveApp("public"),
     appHtml:resolveApp("public/index.html"),

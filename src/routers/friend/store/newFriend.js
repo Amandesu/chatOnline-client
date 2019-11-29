@@ -5,7 +5,7 @@ import {observable, action, computed} from 'mobx';
 
 
 class NewFriend {
-    @observable title = "1";
+    @observable title = "NewFriend";
     @observable.shallow list = [];
     constructor() {
     }
@@ -18,8 +18,7 @@ class NewFriend {
 
 
 }
-const newFriend = new NewFriend()
+const newFriendStore = new NewFriend()
 
 
-
-export default newFriend
+export default newFriendStore
