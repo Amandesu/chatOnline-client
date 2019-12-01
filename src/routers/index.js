@@ -5,6 +5,7 @@ import { Route, Switch, Router } from "react-router-dom";
 import { createHashHistory}  from "history"
 import Home  from "./home";
 import NewFriend  from "./newFriend";
+import Login from "./login";
 
 export const rootStore = {
     homeStore : require("./home/store").default,
@@ -23,6 +24,12 @@ export default (rootProps) => <Router history={createHashHistory()}>
             path="/newFriend"
             render={(props) => {
                 return <NewFriend {...props}/>;
+            }}
+        />
+        <Route
+            path="/login"
+            render={(props) => {
+                return <Login {...props}/>;
             }}
         />
     </Switch>
