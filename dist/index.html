@@ -1,0 +1,57 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link href="./main.362710d8.css" rel="stylesheet"></head>
+<script>
+    var docEl = document.documentElement;
+    function setRemUnit() {
+        var baseFontSize = 12;
+        var orientation = window.orientation
+        var isPad = /pad/ig.test(navigator.userAgent.toLowerCase());
+        var isHorizontal = docEl.clientWidth > docEl.clientHeight;  
+        var u  = window.navigator.userAgent;
+        // 横屏还是竖屏
+        if (isHorizontal) {
+            docEl.setAttribute('data-horizontal', true)
+        } else {
+            docEl.setAttribute('data-vertal', true)
+        }
+        // ios还是安卓
+        if (!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) || /iphone|ios|ipod/i.test(u)) {
+            docEl.setAttribute('data-ios', true)
+        } else {
+            docEl.setAttribute('data-android', true)
+        }
+        // ipad端还是手机端
+        if (isPad || docEl.clientWidth >=768) { //手机端目前只有竖屏
+            docEl.setAttribute('data-pad', true)
+            baseFontSize = isHorizontal ? 20.48: 15.36; 
+        } else {
+            baseFontSize = 7.5
+            docEl.setAttribute('data-mobile', true)
+        }
+        var rem = docEl.clientWidth*2 / baseFontSize;
+        docEl.style.fontSize = rem + 'px'
+    }
+    setRemUnit();
+    window.addEventListener('resize', setRemUnit)
+    window.addEventListener('pageshow', function (e) {
+        if (e.persisted) {
+            setRemUnit()
+        }
+    });
+    window.addEventListener("DOMContentLoaded", function(){
+        document.body.style.fontSize = 12 + 'px';
+    })
+</script>
+<style type="text/css">
+</style>
+<body>
+    <div id="root"></div>
+<script type="text/javascript" src="./js/bundle.362710d8b997c2a27cab.js"></script></body>
+</html>

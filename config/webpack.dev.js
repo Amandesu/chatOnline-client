@@ -72,18 +72,7 @@ module.exports = {
                     limit: 10000,
                     name: "images/[name].[ext]"
                 }
-            }/* ,
-            {
-                test: /\.(woff|woff2|eot|ttf|otf)(\?.*)?$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 10000,
-                    name: '[name].[hash:7].[ext]',			//文件名
-                    assetsPublicPath: '/fonts',
-                    //publicPath:'../fonts/',					//打包时替换的路径
-                    //outputPath:path.resolve(paths.appBuild, "fonts")//文件输出路径
-                }
-            } */,
+            },
             {
                 test: /\.(js|jsx)$/,
                 include: paths.appSrc,
