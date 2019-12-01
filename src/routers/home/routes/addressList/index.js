@@ -36,7 +36,7 @@ export default class AddressList extends React.Component {
                     {this.createItem(
                         <div style={{background:"orange"}}><Icon color="#fff" code="&#xe747;" size={24}/></div>,
                         "新的朋友",
-                        () => this.props.history.push("/friend/add")
+                        () => this.props.history.push("/friend/new")
                     )}
                     {this.createItem(
                         <div style={{background:"green"}}><Icon color="#fff" code="&#xe747;" size={24}/></div>,

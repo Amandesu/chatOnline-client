@@ -1,0 +1,40 @@
+
+
+@prefix:~"friend-component-searchfriend";
+
+.@{prefix}{
+    >li{
+        height: 46px;
+        background: #fff;
+        display: flex;
+        padding-left: 15px;
+        >*{height: 100%;}
+        >.left{
+            width: 20px;
+            box-sizing: border-box;
+            &>div{
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+        }
+        >.right{
+            flex:1;
+            display: flex;
+            align-items: center;
+            font-size: 17px;
+            line-height: 46px;
+            color:#000;
+            margin-left: 10px;
+            &::-webkit-input-placeholder{/*Webkit browsers*/
+                color:#999;
+                font-size:12px;
+            }
+            
+        }
+        border-bottom: 1px solid #eee;
+    }
+    
+}
