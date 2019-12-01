@@ -22,6 +22,11 @@ export default class Friend extends React.Component {
                         component = {NewFriend}
                     />
                     <Route
+                        exact
+                        path="/friend/new1"
+                        component = {NewFriend}
+                    />
+                    <Route
                         path="/friend/search"
                         component = {SearchFriend}
                     />
