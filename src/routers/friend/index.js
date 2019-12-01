@@ -3,6 +3,7 @@ import React from "react";
 import { Route, Switch, Router } from "react-router-dom";
 import AddFriend from "./routes/add"
 import NewFriend from "./routes/new"
+import NewFriend1 from "./routes/new1"
 import SearchFriend from "./routes/search"
 
 import "./index.less";
@@ -24,7 +25,7 @@ export default class Friend extends React.Component {
                     <Route
                         exact
                         path="/friend/new1"
-                        component = {NewFriend}
+                        component = {NewFriend1}
                     />
                     <Route
                         path="/friend/search"

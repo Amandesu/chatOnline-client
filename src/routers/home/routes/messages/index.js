@@ -10,11 +10,21 @@ export default class Messages extends React.Component {
     render(){
         let store = this.props.messagesStore;
         return (
-            <div>
-                {store.list.map((item,index) => (
-                    <div key={index} className='message'>
-                        <div className='iconHead'>
-                            <img />
+            <React.Fragment>
+                <div>
+                    {store.list.map((item,index) => (
+                    <div>
+                        <div key={index} className='message'>
+                            <div className='iconHead'>
+                                <img />
+                            </div>
+                            <div className='content'>
+                                <span>我的</span>
+                                <p>你好</p>
+                            </div>
+                            <div className='remindNum'>
+                                <span>1</span>
+                            </div>
                         </div>
                         <div className='content'>
                             <span>我的</span>
@@ -25,7 +35,8 @@ export default class Messages extends React.Component {
                         </div>
                     </div>
                 ))}
-            </div>
+                </div>
+            </React.Fragment>
         )
     }
 }
