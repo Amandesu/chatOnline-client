@@ -4,7 +4,7 @@ import {observable, action, computed} from 'mobx';
 
 class Messages {
     @observable title = "Messages";
-    @observable.shallow list = [];
+    @observable list = [1,2];
     constructor() {
     }
     @action setTitle = (title) =>{
