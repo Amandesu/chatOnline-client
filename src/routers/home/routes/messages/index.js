@@ -12,8 +12,6 @@ export default class Messages extends React.Component {
         return (
             <React.Fragment>
                 <div>
-                    <div className="headerBlank"></div>
-                    <div className='header'>我的IM</div>
                     {store.list.map((item,index) => (
                         <div key={index} className='message'>
                             <div className='iconHead'>

@@ -15,8 +15,6 @@ export default class AddressList extends React.Component {
                 <div onClick = {() => {
                     store.setTitle("11")
                 }}>
-                    <div className="headerBlank"></div>
-                    <div className='header'>我的IM</div>
                     <div className='topLabel'>发现</div>
                     <div className='topLabel'>分享与邀请</div>
                     <div className='topLabel'>关于</div>
