@@ -1,96 +1,38 @@
-.headerBlank {
-    height: 15px;
-    width: 100%;
-}
-.header {
-    height: 45px;
-    width: 100%;
-    background-color: #36373c;
-    color: #fff;
-    font-size: 18px;
-    line-height: 45px;
-    padding-left: 15px;
-}
-.topLabel {
-    height: 45px;
-    width: 100%;
-    background-color: #fff;
-    font-size: 17px;
-    line-height: 45px;
-    padding-left: 15px; 
-    cursor: pointer;
-}
-.list {
-    margin-top: 5px;
-    width: 100%;
-    display: flex;
-    list-style: none;
-    flex-direction: column;
-    >li {
-        height: 45px;
-        width: 100%;
-        background-color: #fff;
-        font-size: 17px;
-        line-height: 45px;   
-        cursor: pointer;
-        &>.jiantou {
-            width: 10px;
-            height: 10px;
-            margin: 17px 10px 0 10px;
-            float: left;
-            border-right: 1px solid #999;
-            border-top: 1px solid #999;
-            transform: rotate(45deg);
-        }
-        >span {
-            font-weight: bold;
-        }
-        &>.noShow {
-            display: none;
-        }
-        &>.show {
+
+
+@prefix:~"home-addresslist";
+
+.@{prefix}{
+    &>.list-top, & > .list-friends{
+        >li{
+            height: 46px;
+            background: #fff;
             display: flex;
-            list-style: none;   
-            flex-direction: column;
-            >li {
-                height: 50px;
-                width: 100%;
-                display: flex;
-                background-color: #fff;
-                &>.iconHead {
-                    width: 50px;
-                    position: relative;
-                    >img {
-                        height: 36px;
-                        width: 36px;
-                        position: absolute;
-                        top: 0;
-                        right: 0;
-                        bottom: 0;
-                        left: 0;
-                        margin: auto;
-                        border-radius: 50%;
-                        border: 1px solid black;
-                    }
+            >*{height: 100%;}
+            >.left{
+                width: 50px;
+                padding: 5px;
+                box-sizing: border-box;
+                &>div{
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
-                &>.content {
-                    flex: 1;
-                    margin-left: 5px;
-                    margin-top: 5px;
-                    >div {
-                        height: 22px;
-                        line-height: 22px;
-                        font-size: 17px;
-                        color: black;
-                    }
-                    >p {
-                        height: 18px;
-                        line-height: 18px;
-                        font-size: 13px;
-                        color: #999;
-                    }
-                }    
+                
+            }
+            >.right{
+                flex:1;
+                display: flex;
+                align-items: center;
+                font-size: 17px;
+                color:#000;
+                margin-left: 10px;
+                border-bottom: 1px solid #eee;
             }
         }
+    }
+    &>.list-friends{
+        margin-top: 15px;
     }
 }

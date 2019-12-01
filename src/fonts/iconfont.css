@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'iconfont';
+    src: url('./iconfont.ttf') format('truetype');
+
+    /* src: url('/iconfont.eot'); IE9 Compat Modes 
+    src: url('/iconfont.eot?#iefix') format('embedded-opentype'),  IE6-IE8 
+         url('/iconfont.woff') format('font-woff'), Pretty Modern Browsers 
+         url('/iconfont.ttf')  format('truetype'),  Safari, Android, iOS 
+         url('/iconfont.svg#svgFontName') format('svg');  Legacy iOS */
+  }

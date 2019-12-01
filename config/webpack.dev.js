@@ -57,8 +57,7 @@ module.exports = {
                     /\.bmp$/,
                     /\.gif$/,
                     /\.jpe?g$/,
-                    /\.png$/,
-                    /\.svg$/,
+                    /\.png$/
                 ],
                 loader: require.resolve('file-loader'),
                 options: {
@@ -70,10 +69,21 @@ module.exports = {
                 test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
                 loader: require.resolve("url-loader"),
                 options: {
-                    limit: 1000,
+                    limit: 10000,
                     name: "images/[name].[ext]"
                 }
-            },
+            }/* ,
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: '[name].[hash:7].[ext]',			//文件名
+                    assetsPublicPath: '/fonts',
+                    //publicPath:'../fonts/',					//打包时替换的路径
+                    //outputPath:path.resolve(paths.appBuild, "fonts")//文件输出路径
+                }
+            } */,
             {
                 test: /\.(js|jsx)$/,
                 include: paths.appSrc,
