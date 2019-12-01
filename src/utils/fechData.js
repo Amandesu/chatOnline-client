@@ -4,6 +4,7 @@
 
 
 export default ({url, data={}, method = "POST"}) => {
+    let urlParams = {}, paramUrl = "";
     let options = {
         method,
         headers: {
@@ -14,9 +15,9 @@ export default ({url, data={}, method = "POST"}) => {
         options.body = JSON.stringify(data)
     } else {
         urlParams = Object.assign(urlParams, data)
-        paramUrl = Object.keys(urlParams).map(key => `${key}=${urlParams[key]}`).join("&");
+        paramUrl = "?"+Object.keys(urlParams).map(key => `${key}=${urlParams[key]}`).join("&");
     }
-    return fetch(url, options).then(res => {
+    return fetch(url+paramUrl, options).then(res => {
         if (res.status == "200") {
             return res.json();
         } else {

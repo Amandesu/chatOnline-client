@@ -8,7 +8,8 @@ import './index.less';
 export default class Login extends React.Component {
     state = {
         username:"13788889999",
-        password:"123456"
+        password:"123456",
+        key:"",
     }
     register = () => {
         fechData({
@@ -32,6 +33,17 @@ export default class Login extends React.Component {
 
         })
     }
+    queryLikeUser = () => {
+        fechData({
+            url:"/user/queryUsersLikeName",
+            method:"GET",
+            data:{
+                key:this.state.key,
+            }
+        }).then(res => {
+
+        })
+    }
     render() {
         const { state, props } = this;
         console.log(state.username)
@@ -47,6 +59,13 @@ export default class Login extends React.Component {
                         <button onClick={this.register}>注册</button>
                         <button onClick={this.login}>登录</button>
                     </div>
+                </div>
+
+                <div className='login' method='post'>
+                    <input type='text' placeholder='查询用户' value={state.key} onChange ={e => {
+                        this.setState({key:e.target.value})
+                    }}/>
+                    <button onClick={this.queryLikeUser}>查询</button>
                 </div>
                 
             </div>
