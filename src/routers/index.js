@@ -21,7 +21,7 @@ export default (rootProps) => <Router history={createHashHistory()}>
                 return <Home {...props} />;
             }}
         />
-        <Route
+        <Route 
             path="/friend"
             render={(props) => {
                 return <Friend {...props}/>;
