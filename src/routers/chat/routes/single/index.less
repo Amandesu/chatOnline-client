@@ -1,0 +1,76 @@
+@prefix:~"chat-single";
+
+
+.@{prefix} {
+    background-color: rgb(247, 247, 247);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    >.scrollview{
+        flex: 1;
+        //height: calc(100% - 146px);
+        overflow-y: scroll;
+        -webkit-overflow-scrolling:touch;
+    }
+    >.scrollview>.component-msg{
+        display: flex;
+        padding: 7.5px 10px;
+        font-size: 16px;
+        >.holder{
+            width: 60px;
+            -ms-flex-preferred-size: 60px;
+            flex-basis: 60px
+        }
+        >.popup{
+            position: relative;
+            max-width: 76vw;
+            margin-left: 8px;
+            background: #FFFFFF;
+            border: 1px solid #EEEEEE;
+            border-left-width: 0;
+            border-right-width: 1px;
+            border-radius: 5px 5px 5px;
+            padding: 10px 13.5px;
+            color: rgba(0, 0, 0, 0.85);
+            font-family: 'PingFangSC-Regular';
+            /* font-size: 0.16rem; */
+            word-break: break-all;
+            span{
+                font-size: 16px;
+            }
+            &>.linkWrapper::after{
+                position: absolute;
+                content: '';
+                width: 6px;
+                height: 10.5px;
+                background-image: url(../../../../images/msg-left.png);
+                background-size: contain;
+                left: -5px;
+                top: 0;
+            }
+        }
+        &.my{
+            flex-direction: row-reverse;
+            >.popup{
+                background-image: linear-gradient(to right, #6E98FF, #7489FF);
+                color: white;
+                border: 0 solid #EEEEEE;
+                border-left-width: 0;
+                border-right-width: 0;
+                border-radius: 5px 0 5px 5px;
+                &>.linkWrapper::after{
+                    background-image: url(../../../../images/msg-right.png);
+                    left: auto;
+                    right: -5px;
+                    top: 0;
+                }
+            }
+        }
+        
+       
+        
+    }
+    
+}
+
+//#ff5f16

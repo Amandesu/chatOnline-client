@@ -4,12 +4,14 @@ import ReactDOM from "react-dom";
 import { Route, Switch, Router } from "react-router-dom";
 import { createHashHistory}  from "history"
 import Home  from "./home";
-import Login from "./login";
-import Friend  from "./friend";
+import User from "./user";
+import Chat  from "./chat";
 
 export const rootStore = {
     homeStore : require("./home/store").default,
     friendStore : require("./friend/store").default,
+    userStore : require("./user/store").default,
+    chatStore : require("./chat/store").default,
 }
 
 export default (rootProps) => <Router history={createHashHistory()}>
@@ -28,9 +30,15 @@ export default (rootProps) => <Router history={createHashHistory()}>
             }}
         />
         <Route
-            path="/login"
+            path="/user"
             render={(props) => {
-                return <Login {...props}/>;
+                return <User {...props}/>;
+            }}
+        />
+        <Route
+            path="/chat"
+            render={(props) => {
+                return <Chat {...props}/>;
             }}
         />
     </Switch>

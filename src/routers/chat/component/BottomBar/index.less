@@ -1,0 +1,54 @@
+
+
+@prefix:~"chat-component-bottombar";
+
+.@{prefix}{
+    display: flex;
+    height: 56px;
+    background: white;
+    box-shadow: 0 -1px 0 0 #eee;
+
+    .form {
+        flex-grow: 1;
+        width: 0;
+        height: 35px;
+        background: #f0f0f0;
+        margin-top: 10.5px;
+        border-radius: 3px;
+        input {
+            border: none;
+            background: none;
+            width: 100%;
+            height: 100%;
+            font-size: 14px;
+            padding: 0 15px;
+        }
+        ::-webkit-input-placeholder {
+            color: rgba(0, 0, 0, 0.3);
+        }
+    }
+    .submit-wrapper {
+        margin-left: 10px;
+        padding: 10.5px 10px 0 0;
+        flex-shrink: 0;
+        .submit {
+            width: 53px;
+            color: rgba(0, 0, 0, 0.45);
+            font-size: 14px;
+            line-height: 35px;
+            text-align: center;
+            &:active{
+            	background: ui-color-active;
+            }
+        }
+        :global {
+        	.whole-radius{
+        		border-radius: 1px;
+        	}
+            .whole-radius:after {
+                border-radius: 2px;
+                border-color: rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+}

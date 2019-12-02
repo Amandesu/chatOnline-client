@@ -1,5 +1,60 @@
 
 import React from "react";
+import { observer } from 'mobx-react';
+import  inject from 'ROOT/utils/inject';
+import  HeaderNav from 'ROOT/component/HeaderNav';
+import "./index.less"
+
+const prefix = "user-login"
+
+@inject('userStore.loginStore')
+@observer
+export default class Login extends React.Component {
+    state = {
+        username:"13772106501",
+        password:"123456",
+        key:"",
+    }
+    login = () => {
+        fechData({
+            url:"/user/login",
+            data:{
+                username:this.state.username,
+                password:this.state.password
+            }
+        }).then(res => {
+
+        })
+    }
+    render(){
+        let state = this.state;
+        let store = this.props.loginStore;
+        return (
+            <div className={prefix}>
+                <HeaderNav
+                    back={true}
+                    title={"登录"}
+                    goBack={ () => this.props.history.goBack()}
+                 />
+                 <div className="logo">
+                    <img src = {require("ROOT/images/icon.png")} />
+                 </div>
+                <div className="form-group">
+                    <input placeholder="用户名"/>
+                </div>
+                <div className="form-group">
+                    <input placeholder="密&nbsp;&nbsp;&nbsp;码"/>
+                </div>
+                <div className="submit">
+                    登录
+                </div>
+            </div>
+        )
+    }
+}
+/* 
+
+import React from "react";
 import { HeaderNav } from "ROOT/component";
 import { observer } from 'mobx-react';
 import  fechData from 'ROOT/utils/fechData';
@@ -72,3 +127,6 @@ export default class Login extends React.Component {
         )
     } 
 }
+
+*/
+
