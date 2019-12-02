@@ -17,7 +17,7 @@ export default class newFreind extends React.Component {
                 <HeaderNav
                     back={true}
                     title={"新的朋友"}
-                    goBack={ () => this.props.history.goBack()}
+                    goBack={ () => this.props.history.push('/friend')}
                  />
                 <div className='search'>
                     <Icon size={16} color='#555' code='&#xe69f'></Icon>
