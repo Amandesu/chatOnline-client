@@ -5,6 +5,7 @@ import { Route, Switch, Router } from "react-router-dom";
 import { createHashHistory}  from "history"
 import Home  from "./home";
 import User from "./user";
+import Friend from "./friend";
 import Chat  from "./chat";
 
 export const rootStore = {

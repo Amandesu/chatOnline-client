@@ -16,19 +16,18 @@ export default class Login extends React.Component {
         key:"",
     }
     login = () => {
-        fechData({
-            url:"/user/login",
-            data:{
-                username:this.state.username,
-                password:this.state.password
-            }
+        let store = this.props.loginStore;
+        store.login({
+            username:this.state.username,
+            password:this.state.password,
         }).then(res => {
-
+            alert("登录成功")
+            this.props.history.push("/home/addressList");
         })
     }
     render(){
         let state = this.state;
-        let store = this.props.loginStore;
+        
         return (
             <div className={prefix}>
                 <HeaderNav
@@ -40,12 +39,12 @@ export default class Login extends React.Component {
                     <img src = {require("ROOT/images/icon.png")} />
                  </div>
                 <div className="form-group">
-                    <input placeholder="用户名"/>
+                    <input placeholder="用户名" value={state.username} onChange={e => this.setState({username:e.target.value})}/>
                 </div>
                 <div className="form-group">
-                    <input placeholder="密&nbsp;&nbsp;&nbsp;码"/>
+                    <input placeholder="密&nbsp;&nbsp;&nbsp;码" value={state.password} onChange={e => this.setState({password:e.target.value})}/>
                 </div>
-                <div className="submit">
+                <div className="submit" onClick={this.login}>
                     登录
                 </div>
             </div>

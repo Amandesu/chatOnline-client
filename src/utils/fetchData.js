@@ -25,7 +25,12 @@ export default ({url, data={}, method = "POST"}) => {
         }
         
     }).then(res => {
-        return res;
+        if (res.code == "200") {
+            return res.data;
+        } else {
+            return Promise.reject(res)
+        }
+       
     })
 }
 

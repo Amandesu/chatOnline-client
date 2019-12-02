@@ -1,56 +1,59 @@
-.message {
-    height: 50px;
-    width: 100%;
-    display: flex;
-    background-color: #fff;
-    cursor: pointer;
-    &>.iconHead {
-        width: 50px;
-        position: relative;
-        >img {
-            height: 36px;
-            width: 36px;
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            margin: auto;
-            border-radius: 50%;
-            border: 1px solid black;
+@prefix:~"user-resiger";
+
+
+.@{prefix} {
+    &>.resiger {
+        height: 200px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        &>input {
+            height: 50px;
+            width: 200px;
+            border-bottom: 1px solid #999;
+            font-size: 18px;
         }
     }
-    .content {
-        flex: 1;
-        margin-left: 5px;
-        margin-top: 5px;
-        >span {
-            height: 22px;
-            font-size: 17px;
-            color: black;
-        }
-        >p {
-            height: 18px;
-            font-size: 13px;
-            color: #999;
+    &>.logo{
+        margin: 79px auto 40px;
+        text-align: center;
+        height: 60px;
+        line-height: 60px;
+        >img{
+            width: 60px;
+            background: #fff;
         }
     }
-    .remindNum {
-        width: 50px;
-        position: relative;
-        >span {
-            display: block;
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            border-radius: 40%;
-            height: 17px;
-            width: 17px;
-            background-color: red;
-            color: #fff;
-            font-size: 17px;
-            line-height: 17px;
-            text-align: center;
+    &>.form-group{
+        line-height: 55px;
+        margin: 0 25px;
+        border-bottom: 1px solid #ededed;
+        >input{
+            height: 15px;
+            line-height: 15px;
+            padding: 20px 0;
+            width: 100%;
+            font-size: 15px;
+            color: #191a1b;
+            border: 0;
+            outline-width: 0;
         }
     }
+    &>.submit{
+        margin-top: 70px;
+        line-height: 45px;
+        font-size: 16px;
+        margin: 70px 25px 0;
+        border-radius: 3px;
+        text-align: center;
+        background-color: orange;
+        height: 44px;
+        color: #fff;
+        border: none;
+    }
+    
 }
+
+//#ff5f16

@@ -14,6 +14,7 @@ export default class Friend extends React.Component {
                 <Switch>
                 <Route
                         path={`/user`}
+                        exact
                         component = {Login}       
                     />
                     <Route

@@ -5,9 +5,14 @@ import "./index.less"
 const prefix = "friend-component-searchfriend"
 
 export default class AddFreind extends React.Component {
+    static defaultProps = {
+        onPress:() => {},
+        onChange:() => {}
+    }
     render(){
+        const { state, props } = this;
         return (
-            <div className={prefix}>
+            <div className={prefix} onClick={() => this.props.onPress()}>
                 <li>
                     <div className="left">
                         <div>
@@ -16,6 +21,8 @@ export default class AddFreind extends React.Component {
                     </div>
                     <input className="right" 
                         placeholder="微信号/手机号"
+                        value={props.value}
+                        onChange={(e) => props.onChange(e.target.value)}
                     />
                 </li>
             </div>

@@ -17,7 +17,7 @@ export default class Friend extends React.Component {
         const { history } = this.props;
         return (
             <div className={prefix}>
-                <HeaderNav back={true} goBack={() => {history.push('/home/addressList')}} title="通讯录"/>
+                {/* <HeaderNav back={true} goBack={() => {history.push('/home/addressList')}} title="通讯录"/>
                 <div 
                     onClick={() => {history.push('/friend/search')}}
                 className='search'>
@@ -35,7 +35,7 @@ export default class Friend extends React.Component {
                     color='#3FDD86' code='&#xe747' title='添加朋友' />
                 <NavEntry
                     click={() => {history.push('/friend/group')}}
-                    color='#3FDD86' code='&#xe79c' title='群聊' />
+                    color='#3FDD86' code='&#xe79c' title='群聊' /> */}
                 <Switch>
                     <Route
                         path={`/friend/add`}
@@ -62,7 +62,7 @@ export default class Friend extends React.Component {
         )
     }
 }
-class NavEntry extends React.Component {WO RI NIDE PIYAN MENZI}               
+/* class NavEntry extends React.Component {              
     constructor(props) {
         super(props);
     }
@@ -78,4 +78,4 @@ class NavEntry extends React.Component {WO RI NIDE PIYAN MENZI}
         )
     } 
 }
-
+ */
