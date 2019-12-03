@@ -2,6 +2,7 @@
 import React from "react";
 import { observer } from 'mobx-react';
 import  inject from 'ROOT/utils/inject';
+import sessionStore from 'ROOT/utils/sessionStore';
 import  HeaderNav from 'ROOT/component/HeaderNav';
 import "./index.less"
 
@@ -22,6 +23,7 @@ export default class Login extends React.Component {
             password:this.state.password,
         }).then(res => {
             alert("登录成功")
+            sessionStore.set("user", res);
             this.props.history.push("/home/addressList");
         })
     }

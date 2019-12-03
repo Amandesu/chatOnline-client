@@ -155,8 +155,7 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': '"development"',
-            'process.env.MOCK': !!process.env.MOCK?JSON.stringify(process.env.MOCK):"false"
+            'process.env.NODE_ENV': '"development"'
         }),
         new HtmlWebpackPlugin({
             inject: true,

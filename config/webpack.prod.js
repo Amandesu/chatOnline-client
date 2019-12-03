@@ -1,7 +1,7 @@
 "use strict";
 
 if (!process.env.NODE_ENV) {
-    process.env.NODE_ENV = "development";
+    process.env.NODE_ENV = "production";
 }
 const webpack = require("webpack");
 const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
@@ -154,8 +154,10 @@ module.exports = {
             inject: true,
             template: paths.appHtml
         }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': '"production"'
+        }),
         new webpack.NamedModulesPlugin(),
-        //new webpack.DefinePlugin(env.stringified),
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin({
             filename: "main.[hash:8].css"

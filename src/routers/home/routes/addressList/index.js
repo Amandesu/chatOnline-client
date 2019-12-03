@@ -11,6 +11,15 @@ const prefix = "home-addresslist"
 @inject("homeStore.addressListStore")
 @observer
 export default class AddressList extends React.Component {
+    constructor(props){
+        super(props)
+    }
+    componentDidMount(){
+        let store = this.props.addressListStore;
+        store.getFriendList().then(res => {
+
+        })
+    }
     // item容器
     createItem =(left, right, onPress = () => {}) => {
         return (
@@ -29,7 +38,8 @@ export default class AddressList extends React.Component {
     }
     render(){
         const store = this.props.addressListStore;
-        let friends = Array(20).fill(0).map((_,index) => "朋友"+index)
+        let friends = store.friendList;
+        console.log(friends.map)
         return (
             <div className={prefix}>
                 <div className="list-top">
@@ -46,7 +56,8 @@ export default class AddressList extends React.Component {
                 <div className="list-friends">
                     {friends.map((item,index) => this.createItem(
                         <div style={{background:"orange"}}><Icon color="#fff" code="&#xe747;" size={24}/></div>,
-                        item
+                        item.aliaName,
+                        () => this.props.history.push(`/chat/single/${item.friend}`)
                     ))}
                 </div>
             </div>

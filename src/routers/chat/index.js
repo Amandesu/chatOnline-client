@@ -11,12 +11,14 @@ export default class Chat extends React.Component {
         return (
             <div className={prefix}>
                 <Switch>
-                <Route
-                        path={`/chat`}
-                        component = {Single}       
-                    />
                     <Route
-                        path={`/chat/single`}
+                        exact
+                        path={`/chat/:username`}
+                        component = {Single}       
+                    /> 
+                    <Route
+                        exact
+                        path={`/chat/single/:username`}
                         component = {Single}       
                     />
                 </Switch>

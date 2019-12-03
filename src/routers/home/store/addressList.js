@@ -1,16 +1,24 @@
 
 import {observable, action, computed} from 'mobx';
-
+import  fetchData from 'ROOT/utils/fetchData';
 
 
 
 class AddressList {
     @observable title = "AddressList";
-    @observable.shallow list = [];
+    @observable.shallow friendList = [];
     constructor() {
     }
-    @action setTitle = (title) =>{
-        this.title = title
+    @action getFriendList = (params) =>{
+        return fetchData({
+            url:"/friend/getFriendList",
+            method:"POST",
+            data:{
+            }
+        }).then(action(res => {
+            this.friendList = res;
+            return res;
+        }))
     }
     @computed get total(){
       return 1

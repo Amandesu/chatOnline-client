@@ -1,122 +1,128 @@
 import React from "react";
 import { observer } from "mobx-react";
 import inject from "ROOT/utils/inject";
+import socket from "ROOT/utils/socket";
+import sessionStore from "ROOT/utils/sessionStore";
 import HeaderNav from "ROOT/component/HeaderNav";
 import BottomBar from "../../component/BottomBar";
-import "./index.less";
 
+import "./index.less";
 const prefix = "chat-single";
 
 @inject("chatStore.singleStore")
 @observer
 export default class Single extends React.Component {
-  state = {
-      msgs:[
-          {ismine:true,msg:"12"},
-          {ismine:false,msg:"19"},
-        ]
-   };
-   
-   /* shouldComponentUpdate(nextProps, nextState){
-       console.log(99)
-    if (this.state.msgs.length > nextState.msgs.length ) {
-        this.scrollToBottom();
+    state = {
+        msgs: []
+    };
+    constructor(props) {
+        super(props);
+        socket.receivePrivateMsg(res => {
+            
+            this.setState({
+                msgs:this.state.msgs.concat({msg:res.content, ismine:false})
+            }, ( ) => this.scrollToBottom())
+        }); 
     }
-    return true
-   } */ 
-
-   getSnapshotBeforeUpdate(prevProps, prevState){
-       console.log(prevState.msgs.length)
-   }
-   handleContentTouchMove=() => {
-        const inputs = document.getElementsByTagName('input') || []
+    handleContentTouchMove = () => {
+        const inputs = document.getElementsByTagName("input") || [];
         for (let i = 0; i < inputs.length; i++) {
-            inputs[i].blur()
+            inputs[i].blur();
         }
-    }
+    };
     scrollToBottom = () => {
         this.canAutoScroll = false;
-        if (this.scrollview.scrollHeight > this.scrollview.offsetHeight+this.scrollview.scrollTop) {
-            let to = this.scrollview.scrollHeight-this.scrollview.scrollTop-this.scrollview.offsetHeight;
-            this.scrollTo(this.scrollview.scrollTop, this.scrollview.scrollTop+to, 300)
+        if (
+            this.scrollview.scrollHeight >
+            this.scrollview.offsetHeight + this.scrollview.scrollTop
+        ) {
+            let to =
+                this.scrollview.scrollHeight -
+                this.scrollview.scrollTop -
+                this.scrollview.offsetHeight;
+            this.scrollTo(
+                this.scrollview.scrollTop,
+                this.scrollview.scrollTop + to,
+                300
+            );
         }
-    }
+    };
     scrollTo = (from, to, during) => {
-        let s = + new Date();
-        let total = to-from;
+        let s = +new Date();
+        let total = to - from;
         let scroll = () => {
-            let d = +new Date-s;
-            if(d<300) {
-                this.scrollview.scrollTop = from+total*(d/200);
-                window.requestAnimationFrame(scroll)
+            let d = +new Date() - s;
+            if (d < 300) {
+                this.scrollview.scrollTop = from + total * (d / 200);
+                window.requestAnimationFrame(scroll);
             } else {
-                this.scrollview.scrollTop = to
+                this.scrollview.scrollTop = to;
             }
-        }
+        };
         scroll();
+    };
+    sendMsg = (msg) => {
+        const params = this.props.match.params || {}
+        this.setState({
+            msgs: this.state.msgs.concat({ismine:true, msg})
+        }, () => {
+            this.scrollToBottom();
+            socket.sendPrivateMsg({
+                type: "1",
+                content: msg,
+                recipient: params.username
+            })
+        })
     }
-  render() {
-    let state = this.state;
-    let store = this.props.singleStore;
-    console.log(state.msgs.length)
-    return (
-      <div className={prefix}>
-        <HeaderNav
-          back={true}
-          title={"张三"}
-          goBack={() => this.props.history.goBack()}
-        />
-        <div className="scrollview" onTouchMove={this.handleContentTouchMove} ref={content => ( this.scrollview = content)}>
-            {state.msgs.map(item => {
-                return <div className={`component-msg ${item.ismine ? "my":""}`}>
-                <div className="popup">
-                  <div style={{width: "100%"}}>
-                    <p>
-                      <span>{item.msg}</span>
-                    </p>
-                  </div>
-                  <div className="linkWrapper"></div>
+    render() {
+        let state = this.state;
+        let store = this.props.singleStore;
+        
+        return (
+            <div className={prefix}>
+                <HeaderNav
+                    back={true}
+                    title={"机器人"}
+                    goBack={() => this.props.history.goBack()}
+                />
+                <div
+                    className="scrollview"
+                    onTouchMove={this.handleContentTouchMove}
+                    ref={content => (this.scrollview = content)}
+                >
+                    {state.msgs.map(item => {
+                        return (
+                            <div className={`component-msg ${item.ismine ? "my" : ""}`}>
+                                <div className="popup">
+                                    <div style={{ width: "100%" }}>
+                                        <p>
+                                            <span>{item.msg}</span>
+                                        </p>
+                                    </div>
+                                    <div className="linkWrapper"></div>
+                                </div>
+                                <div className="holder"></div>
+                            </div>
+                        );
+                    })}
                 </div>
-                <div className="holder"></div>
-              </div>
-            })}
-       
-            
-        </div>
-       
-       
-        <BottomBar
-            onFocus={() => {
-                setTimeout(() => {
-                    this.scrollview.scrollTop = this.scrollview.scrollHeight;
-                }, 100)
-                
-            }}
-            onBlur={() => {
-                window.scroll(0, 0)
-            }}
-            onSubmit={msg => {
-                state.msgs.push({
-                    ismine:true,
-                    msg
-                })
-                this.setState({
-                }, () => {
-                    this.scrollToBottom()
-                    setTimeout(() => {
-                        state.msgs.push({msg:"请稍等"})
-                        this.setState({msgs:state.msgs}, () =>  this.scrollToBottom())
-                    }, 500)
-                    
-                })
-                
-            }}
-        />
-      </div>
-    );
-  }
+
+                <BottomBar
+                    onFocus={() => {
+                        setTimeout(() => {
+                            this.scrollview.scrollTop = this.scrollview.scrollHeight;
+                        }, 100);
+                    }}
+                    onBlur={() => {
+                        window.scroll(0, 0);
+                    }}
+                    onSubmit={msg => this.sendMsg(msg)}
+                />
+            </div>
+        );
+    }
 }
-/* 
+/*
 
 import React from "react";
 import { HeaderNav } from "ROOT/component";
@@ -186,10 +192,10 @@ export default class Login extends React.Component {
                     }}/>
                     <button onClick={this.queryLikeUser}>查询</button>
                 </div>
-                
+
             </div>
         )
-    } 
+    }
 }
 
 */

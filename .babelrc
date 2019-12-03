@@ -9,6 +9,8 @@
         "@babel/plugin-syntax-dynamic-import",
         "@babel/plugin-transform-runtime",
         ["@babel/plugin-proposal-decorators", {"legacy": true}],
-        ["@babel/plugin-proposal-class-properties"]
+        ["@babel/plugin-proposal-class-properties"],
+        ["babel-plugin-transform-omodule-namespace",{"legacy": true}],
+        ["@babel/plugin-transform-modules-commonjs",{"lazy": false}]
     ]
 }
