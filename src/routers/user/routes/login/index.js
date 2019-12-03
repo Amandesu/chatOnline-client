@@ -3,6 +3,7 @@ import React from "react";
 import { observer } from 'mobx-react';
 import  inject from 'ROOT/utils/inject';
 import sessionStore from 'ROOT/utils/sessionStore';
+import socket from 'ROOT/utils/socket';
 import  HeaderNav from 'ROOT/component/HeaderNav';
 import "./index.less"
 
@@ -24,6 +25,11 @@ export default class Login extends React.Component {
         }).then(res => {
             alert("登录成功")
             sessionStore.set("user", res);
+            socket.onConnect().then(socket => {
+                console.log(socket)
+                let user = sessionStore.get("user")
+                user && socket.emit('new user', user.username);
+            });
             this.props.history.push("/home/addressList");
         })
     }

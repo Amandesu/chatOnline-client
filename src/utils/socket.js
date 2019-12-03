@@ -4,10 +4,10 @@ import sessionStore from "./sessionStore";
 let host = "http://193.112.59.10:8080/"
 
 // 如果是开发环境
-if (process.env.NODE_ENV) {
+/* if (process.env.NODE_ENV) {
     host = "http://localhost:8080/"
 }
-
+ */
 // 连接上
 
 
@@ -22,12 +22,11 @@ class Socket {
         return socket;
     }
     constructor(){
-        let socket = this.imsocket();
+        /* let socket = this.imsocket();
         this.onConnect().then(res => {
-            let user = sessionStore.get("user");
-            console.log(user)
+            let user = sessionStore.get("user")
             user && socket.emit('new user', user.username);
-        })
+        }) */
     }
     onConnect(){
         let socket = this.imsocket();
@@ -35,10 +34,10 @@ class Socket {
         return new Promise((resolve, reject) => {
             // 如果已经完成连接
             if (socket.io.readyState == "open") {
-                return resolve();
+                return resolve(socket);
             }
             socket.on('connect', function () {
-                resolve()
+                resolve(socket)
             });
         })
     }
