@@ -5,7 +5,7 @@ import env from "./env";
 let host = "http://193.112.59.10:8080/"
 
 // 如果是开发环境
-if (process.env.NODE_ENV) {
+if (process.env.NODE_ENV == "development") {
     host = "http://localhost:8080/"
 }
  
