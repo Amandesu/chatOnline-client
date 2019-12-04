@@ -30,7 +30,6 @@ export default ({url, data={}, method = "POST"}) => {
         } else {
             return Promise.reject(res)
         }
-       
     })
 }
 

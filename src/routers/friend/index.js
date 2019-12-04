@@ -6,12 +6,13 @@ import NewFriend from "./routes/new"
 import NewFriend1 from "./routes/new1"
 import SearchFriend from "./routes/search";
 import Group from "./routes/group";
+import  { WithHOCLogin } from 'ROOT/utils/withEnvLogin';
 import HeaderNav from "ROOT/component/HeaderNav";
 import Icon from "../../component/Icon";
 
 import "./index.less";
 const prefix = "friend";
-
+@WithHOCLogin
 export default class Friend extends React.Component {
     render(){
         const { history } = this.props;

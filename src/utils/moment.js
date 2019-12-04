@@ -1,10 +1,8 @@
-let addZero = (n:number) => n < 10 ? "0"+n:String(n);
+let addZero = (n) => n < 10 ? "0"+n:String(n);
 
 class Moment {
-    Y:number; M:number; D:number;
-    h:number; m:number; s:number;
-    timestamp:number;
-    constructor(timestamp:number){
+    Y; M; D; h; m; s; timestamp;
+    constructor(timestamp){
         let d = new Date(timestamp);
         this.timestamp = timestamp;
         this.Y = d.getFullYear();
@@ -15,7 +13,7 @@ class Moment {
         this.s = d.getSeconds();
     }
     //'YYYY年M月D日 H:mm:ss'
-    format(text:string){
+    format(text){
         let newText =text;
         let match = [this.Y, this.M, this.D, this.h, this.m, this.s].map(item => addZero(item));
         [/Y+/g, /M+/g, /D+/g, /H+/g, /m+/g, /s+/g].forEach((reg, i) => {
@@ -30,6 +28,6 @@ class Moment {
     }
 }
 
-export default function moment(timestamp:number){
+export default function moment(timestamp){
     return new Moment(timestamp)
 }

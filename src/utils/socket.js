@@ -1,54 +1,43 @@
 import io from "socket.io-client";
 import sessionStore from "./sessionStore";
+import env from "./env";
 
 let host = "http://193.112.59.10:8080/"
 
 // 如果是开发环境
-/* if (process.env.NODE_ENV) {
+if (process.env.NODE_ENV) {
     host = "http://localhost:8080/"
 }
- */
+ 
 // 连接上
-
-
+console.log(env)
 class Socket {
     socket = null;
+    connectFn = [];
+    // 必须登录了才能调用该方法
     imsocket(){
         let socket = this.socket;
         if (!socket) {
             this.socket = socket = io(host)
-        }
-
-        return socket;
-    }
-    constructor(){
-        /* let socket = this.imsocket();
-        this.onConnect().then(res => {
-            let user = sessionStore.get("user")
-            user && socket.emit('new user', user.username);
-        }) */
-    }
-    onConnect(){
-        let socket = this.imsocket();
-
-        return new Promise((resolve, reject) => {
-            // 如果已经完成连接
-            if (socket.io.readyState == "open") {
-                return resolve(socket);
-            }
-            socket.on('connect', function () {
-                resolve(socket)
+            socket.on('connect',  () =>{
+                let user = sessionStore.get("user");
+                if (!user) throw Error("没有登录")
+                this.socket.emit('new user', user.username)
             });
-        })
+            socket.on('disconnect', () => {
+                
+            });
+        }
+        return socket;
     }
     // 发送私有消息
     sendPrivateMsg(item){
-        let socket = this.imsocket();
-        let { type = "1", content = "", recipient} = item;
+        if (!this.socket) throw Error("socket未初始化");
 
+        let { type = "1", content = "", recipient} = item;
         return new Promise((resolve, reject) => {
             // 发送消息
-            socket.emit('send private message', {
+            this.socket.emit('send private message', {
                 type, content, recipient
             }, (res) => {
                 resolve(res)
@@ -57,16 +46,16 @@ class Socket {
     }
     // 接收私有消息
     receivePrivateMsg(cb) {
-        let socket = this.imsocket();
-        this.onConnect().then(res => {
-            socket.on("receive private message", res => {
-                cb && cb(res)
-            })
+        if (!this.socket) throw Error("socket未初始化");
+        this.socket.on("receive private message", res => {
+            cb && cb(res)
         })
        
     }
 }
-let mSocket = new Socket()
+let mSocket = new Socket();
+
+
 export default mSocket;
 
 

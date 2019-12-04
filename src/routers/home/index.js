@@ -6,11 +6,13 @@ import Messages from "./routes/messages"
 import More from "./routes/more"
 import Icon from "ROOT/component/Icon"
 import HeaderNav from "ROOT/component/HeaderNav"
+import  { WithHOCLogin } from 'ROOT/utils/withEnvLogin';
 
 import "./index.less"
 
 const prefix = "home";
 
+@WithHOCLogin
 export default class Home extends React.Component {
     render(){
         return (

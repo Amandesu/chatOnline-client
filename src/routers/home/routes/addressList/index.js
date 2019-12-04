@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import  inject from 'ROOT/utils/inject';
 import Icon from "ROOT/component/Icon"
 
+
 import "./index.less"
 
 const prefix = "home-addresslist"
@@ -39,7 +40,6 @@ export default class AddressList extends React.Component {
     render(){
         const store = this.props.addressListStore;
         let friends = store.friendList;
-        console.log(friends.map)
         return (
             <div className={prefix}>
                 <div className="list-top">

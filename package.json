@@ -55,7 +55,7 @@
     "webpack-dev-server": "^3.1.14",
     "webpack-parallel-uglify-plugin": "^1.1.0"
   },
-  "proxy": "http://193.112.59.10:8080/",
+  "proxy": "http://localhost:8080/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node scripts/start.js",
