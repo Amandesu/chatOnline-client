@@ -8,12 +8,17 @@ import Icon from "ROOT/component/Icon"
 import HeaderNav from "ROOT/component/HeaderNav"
 import  { WithHOCLogin } from 'ROOT/utils/withEnvLogin';
 
+
 import "./index.less"
 
 const prefix = "home";
 
+
 @WithHOCLogin
 export default class Home extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     render(){
         return (
             <div className={prefix}>
@@ -43,6 +48,7 @@ export default class Home extends React.Component {
 class Footer extends React.Component {
     constructor(props){
         super(props);
+        
         this.tabs = [{
             code:"&#xea98;", // 图标
             text:"消息",

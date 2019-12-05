@@ -17,11 +17,16 @@ export default class Single extends React.Component {
     };
     constructor(props) {
         super(props);
+        let store = this.props.singleStore;
+        let friend = this.props.location.state.friend.friend;
         socket.receivePrivateMsg(res => {
-            
+            console.log(res)
             this.setState({
-                msgs:this.state.msgs.concat({msg:res.content, ismine:false})
-            }, ( ) => this.scrollToBottom())
+                msgs:this.state.msgs.concat({msg:res.content, ismine: false,friend: res.sendUser})
+            }, () => {
+                //store.getMsgs({msg:res.content, ismine: false,friend: res.sendUser});
+                this.scrollToBottom()
+            })
         }); 
     }
     handleContentTouchMove = () => {
@@ -62,10 +67,14 @@ export default class Single extends React.Component {
         scroll();
     };
     sendMsg = (msg) => {
+        console.log(msg)
+        let store = this.props.singleStore;
+        let friend = this.props.location.state.friend.friend;
         const params = this.props.match.params || {}
         this.setState({
-            msgs: this.state.msgs.concat({ismine:true, msg})
+            msgs: this.state.msgs.concat({ismine:true, friend: 'mine', msg}) //friend应为 mine
         }, () => {
+            store.getMsgs({ismine:true, friend: friend, msg});
             this.scrollToBottom();
             socket.sendPrivateMsg({
                 type: "1",
@@ -77,12 +86,12 @@ export default class Single extends React.Component {
     render() {
         let state = this.state;
         let store = this.props.singleStore;
-        
+        let friend = this.props.location.state.friend.friend;
         return (
             <div className={prefix}>
                 <HeaderNav
                     back={true}
-                    title={"机器人"}
+                    title={friend}
                     goBack={() => this.props.history.goBack()}
                 />
                 <div
@@ -90,20 +99,23 @@ export default class Single extends React.Component {
                     onTouchMove={this.handleContentTouchMove}
                     ref={content => (this.scrollview = content)}
                 >
-                    {state.msgs.map(item => {
-                        return (
-                            <div className={`component-msg ${item.ismine ? "my" : ""}`}>
-                                <div className="popup">
-                                    <div style={{ width: "100%" }}>
-                                        <p>
-                                            <span>{item.msg}</span>
-                                        </p>
+                    {store.list.map((item,index) => {
+                        console.log(item);
+                        if(item.friend ===friend) {
+                            return (
+                                <div key={index} className={`component-msg ${item.ismine ? "my" : ""}`}>
+                                    <div className="popup">
+                                        <div style={{ width: "100%" }}>
+                                            <p>
+                                                <span>{item.msg}</span>
+                                            </p>
+                                        </div>
+                                        <div className="linkWrapper"></div>
                                     </div>
-                                    <div className="linkWrapper"></div>
+                                    <div className="holder"></div>
                                 </div>
-                                <div className="holder"></div>
-                            </div>
-                        );
+                            );
+                        }
                     })}
                 </div>
 

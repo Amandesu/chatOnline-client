@@ -9,6 +9,10 @@ class Single {
     @observable.shallow list = [];
     constructor() {
     }
+    @action getMsgs = (msg) => {
+      this.list.push(msg);
+      console.log(this.list);
+    }
     @action setTitle = (title) =>{
         this.title = title
     }

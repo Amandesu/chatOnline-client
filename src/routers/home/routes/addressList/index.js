@@ -57,7 +57,7 @@ export default class AddressList extends React.Component {
                     {friends.map((item,index) => this.createItem(
                         <div style={{background:"orange"}}><Icon color="#fff" code="&#xe747;" size={24}/></div>,
                         item.aliaName,
-                        () => this.props.history.push(`/chat/single/${item.friend}`)
+                        () => this.props.history.push({pathname: `/chat/single/${item.friend}`, state: {friend: item}})
                     ))}
                 </div>
             </div>
