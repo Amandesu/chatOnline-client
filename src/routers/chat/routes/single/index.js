@@ -2,6 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 import inject from "ROOT/utils/inject";
 import socket from "ROOT/utils/socket";
+import fetchData from "ROOT/utils/fetchData";
 import sessionStore from "ROOT/utils/sessionStore";
 import HeaderNav from "ROOT/component/HeaderNav";
 import BottomBar from "../../component/BottomBar";
@@ -18,11 +19,19 @@ export default class Single extends React.Component {
     constructor(props) {
         super(props);
         socket.receivePrivateMsg(res => {
-            
             this.setState({
                 msgs:this.state.msgs.concat({msg:res.content, ismine:false})
             }, ( ) => this.scrollToBottom())
         }); 
+    }
+    componentDidMount(){
+        fetchData({
+            url:"/message/getUnreadMsg",
+            method:"GET"
+        }).then(res => {
+
+        })
+        this.scrollview && (this.scrollview.scrollTop = this.scrollview.scrollHeight)
     }
     handleContentTouchMove = () => {
         const inputs = document.getElementsByTagName("input") || [];
@@ -63,26 +72,23 @@ export default class Single extends React.Component {
     };
     sendMsg = (msg) => {
         const params = this.props.match.params || {}
-        this.setState({
-            msgs: this.state.msgs.concat({ismine:true, msg})
-        }, () => {
+        this.props.singleStore.sendMsg({ismine:true, msg}, params.username).then(res => {
             this.scrollToBottom();
             socket.sendPrivateMsg({
                 type: "1",
                 content: msg,
                 recipient: params.username
             })
-        })
+        });
     }
     render() {
         let state = this.state;
         let store = this.props.singleStore;
-        
         return (
             <div className={prefix}>
                 <HeaderNav
                     back={true}
-                    title={"机器人"}
+                    title={"H5机器人"}
                     goBack={() => this.props.history.goBack()}
                 />
                 <div
@@ -90,9 +96,9 @@ export default class Single extends React.Component {
                     onTouchMove={this.handleContentTouchMove}
                     ref={content => (this.scrollview = content)}
                 >
-                    {state.msgs.map(item => {
+                    {store.msgs.map((item,index) => {
                         return (
-                            <div className={`component-msg ${item.ismine ? "my" : ""}`}>
+                            <div className={`component-msg ${item.ismine ? "my" : ""}`} key={index}>
                                 <div className="popup">
                                     <div style={{ width: "100%" }}>
                                         <p>

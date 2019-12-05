@@ -30,6 +30,7 @@ export default class BottomBar extends React.Component {
                     }}
                 >
                     <input
+                        className="input"
                         ref={input => (this.input = input)}
                         value={this.state.input}
                         placeholder="请输入您想说的话..."

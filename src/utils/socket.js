@@ -1,5 +1,6 @@
 import io from "socket.io-client";
 import sessionStore from "./sessionStore";
+import singleStore from "../routers/chat/store/single";
 import env from "./env";
 
 let host = "http://193.112.59.10:8080/"
@@ -20,15 +21,24 @@ class Socket {
         if (!socket) {
             this.socket = socket = io(host)
             socket.on('connect',  () =>{
+                // 告诉后台用户已登录并连接socket
                 let user = sessionStore.get("user");
                 if (!user) throw Error("没有登录")
-                this.socket.emit('new user', user.username)
+                this.socket.emit('new user', user.username, user.aliaName)
             });
+            socket.on("receive private message", res => {
+                singleStore.receiveMsg({
+                    ismine:false,
+                    msg:res.content
+                }, res.sendUser)
+            })
             socket.on('disconnect', () => {
                 
             });
         }
         return socket;
+
+
     }
     // 发送私有消息
     sendPrivateMsg(item){
@@ -38,7 +48,7 @@ class Socket {
         return new Promise((resolve, reject) => {
             // 发送消息
             this.socket.emit('send private message', {
-                type, content, recipient
+                type, content, recipient, user:sessionStore.get("user")
             }, (res) => {
                 resolve(res)
             });

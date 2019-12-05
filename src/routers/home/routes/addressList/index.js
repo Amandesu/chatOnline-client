@@ -9,6 +9,7 @@ import "./index.less"
 
 const prefix = "home-addresslist"
 
+@inject("chatStore.singleStore")
 @inject("homeStore.addressListStore")
 @observer
 export default class AddressList extends React.Component {
@@ -55,9 +56,13 @@ export default class AddressList extends React.Component {
                 </div>
                 <div className="list-friends">
                     {friends.map((item,index) => this.createItem(
-                        <div style={{background:"orange"}}><Icon color="#fff" code="&#xe747;" size={24}/></div>,
+                        <div style={{background:"orange"}} key={index}><Icon color="#fff" code="&#xe747;" size={24}/></div>,
                         item.aliaName,
-                        () => this.props.history.push(`/chat/single/${item.friend}`)
+                        () => {
+                            this.props.singleStore.changeUser(item.friend).then(() => {
+                                this.props.history.push(`/chat/single/${item.friend}`)
+                            })
+                        }
                     ))}
                 </div>
             </div>
