@@ -22,6 +22,7 @@
     "@babel/plugin-transform-arrow-functions": "^7.2.0",
     "@babel/plugin-transform-modules-commonjs": "^7.7.4",
     "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-0": "^7.0.0",
@@ -32,6 +33,7 @@
     "babel-plugin-transform-omodule-namespace": "0.5.0",
     "babel-preset-react-app": "^7.0.0",
     "better-picker": "^1.1.3",
+    "core-js": "2",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
@@ -53,13 +55,15 @@
     "webpack-assets-info": "^0.0.2",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",
-    "webpack-parallel-uglify-plugin": "^1.1.0"
+    "webpack-parallel-uglify-plugin": "^1.1.2",
+    "terser-webpack-plugin": "^2.2.2"
   },
-  "proxy": "http://193.112.59.10:8080/",
+  "proxy": "http://localhost:8080/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js"
+    "build": "node scripts/build.js",
+    "dll": "node scripts/dll.js"
   },
   "author": "",
   "license": "ISC",

@@ -44,11 +44,13 @@ const { checkBrowsers } = require("react-dev-utils/browsersHelper");
 
 checkBrowsers(paths.appPath, isInteractive)
     .then(() => {
+        
         return measureFileSizesBeforeBuild(paths.appBuild);
     })
     .then((previousFileSizes) => {
         fs.emptyDirSync(paths.appBuild);
         copyPublicFolder();
+        fs.copySync(path.join(paths.appSrc,"lib/common.js"), path.join(paths.appBuild,"js/common.js"))
         return build(previousFileSizes);
     })
     .then(

@@ -252,7 +252,7 @@
   left: 0;
   margin: auto;
   border-radius: 50%;
-  border: 0.01rem solid black;
+  background-color: orange;
 }
 
 .message .content {

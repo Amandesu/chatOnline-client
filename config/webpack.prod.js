@@ -8,6 +8,7 @@ const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const WebpackParallelUglifyPlugin = require("webpack-parallel-uglify-plugin");
+const TerserWebpackPlugin = require("terser-webpack-plugin");
 const path = require("path");
 const paths = require("./paths");
 const fs = require("fs");
@@ -124,7 +125,7 @@ module.exports = {
                             plugins: () => [
                                 require("postcss-flexbugs-fixes"),
                                 require("autoprefixer")({
-                                    browsers: [
+                                    overrideBrowserslist: [
                                         ">1%",
                                         "last 4 versions",
                                         "Firefox ESR",
@@ -157,12 +158,24 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': '"production"'
         }),
+        new webpack.DllReferencePlugin({
+            context: process.cwd(),
+            name:"common",
+            manifest: require(`../common-manifest.json`),
+        }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin({
             filename: "main.[hash:8].css"
         }),
-      /* new WebpackParallelUglifyPlugin({
+        new TerserWebpackPlugin({
+            parallel: true,
+            terserOptions: {
+              ecma: 6,
+            },
+        })
+        /* new WebpackParallelUglifyPlugin({
+            test: /.js$/g,
             uglifyJS: {
               output: {
                 beautify: false, //不需要格式化
@@ -175,12 +188,12 @@ module.exports = {
                 reduce_vars: true // 提取出出现多次但是没有定义成变量去引用的静态值
               }
             }
-          })  */ 
+          })  */  
     ],
 
     optimization: {
-        minimize: true
-    }, 
+        minimize: false
+    },  
     node: {
         dgram: "empty",
         fs: "empty",
