@@ -46,7 +46,7 @@
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-loader": "^3.0.0",
     "postcss-px2rem": "^0.3.0",
-    "react-dev-utils": "^7.0.1",
+    "react-dev-utils": "^11.0.4",
     "react-hot-loader": "^4.6.3",
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.1.1",
